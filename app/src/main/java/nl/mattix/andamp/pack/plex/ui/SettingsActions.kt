@@ -292,33 +292,40 @@ internal class SettingsActions(
         return Tried.SignedIn
     }
 
+    /**
+     * The kept sign-in comes first: a sign-in left pending by a canceled picker must
+     * not be kept in its place.
+     */
     private fun chooseLibrary(
         key: String,
         title: String,
     ): Tried {
-        val reached = pending
-        if (reached != null) return keep(reached, reached.libraries.firstOrNull { it.key == key } ?: PlexSection(key, title))
-        if (!store.signedIn) return Tried.Failed("no sign-in is under way")
-        store.chooseLibrary(key, title)
-        announce(app)
-        return Tried.SignedIn
+        if (store.signedIn) {
+            pending = null
+            store.chooseLibrary(key, title)
+            announce(app)
+            return Tried.SignedIn
+        }
+        val reached = pending ?: return Tried.Failed("no sign-in is under way")
+        return keep(reached, reached.libraries.firstOrNull { it.key == key } ?: PlexSection(key, title))
     }
 
+    /** The kept server's libraries when signed in, otherwise those of the sign-in under way. */
     override suspend fun libraries(): List<Choice> {
         val begun = pending
         val libraries =
             when {
+                store.signedIn -> {
+                    val server = store.server(deviceName, version)
+                    (PlexProbe.sections(http, server.base, server.token) as? Probed.Found)?.value.orEmpty()
+                }
+
                 begun != null -> {
                     begun.libraries
                 }
 
-                !store.signedIn -> {
-                    emptyList()
-                }
-
                 else -> {
-                    val server = store.server(deviceName, version)
-                    (PlexProbe.sections(http, server.base, server.token) as? Probed.Found)?.value.orEmpty()
+                    emptyList()
                 }
             }
         return libraries.map { Choice(it.key, it.title) }

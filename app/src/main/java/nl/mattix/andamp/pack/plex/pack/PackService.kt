@@ -6,6 +6,8 @@ import android.content.Context
 import android.os.Build
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import nl.mattix.andamp.core.network.SystemNetworkWatch
 import nl.mattix.andamp.core.packapi.PackAccount
 import nl.mattix.andamp.core.packapi.PackAnswer
@@ -45,6 +47,9 @@ class PackService : PackServiceBase() {
      * up the connectivity service only when first used.
      */
     internal val network: NetworkWatch = SystemNetworkWatch(this)
+
+    /** One search for the server at a time; a second question that found it gone waits for the first's answer. */
+    private val moving = Mutex()
 
     /** The library as it was last built, and for which address, token and section; see [library]. */
     private var shelves: PlexLibrary? = null
@@ -107,11 +112,12 @@ class PackService : PackServiceBase() {
      * on. Null when none answers, or when the sign-in has no connections (a
      * typed address).
      */
-    private suspend fun moved(): PlexServer? {
-        val found = PlexProbe.reach(http(), store.connections, store.machineId) ?: return null
-        store.moveTo(found.uri)
-        return server()
-    }
+    private suspend fun moved(): PlexServer? =
+        moving.withLock {
+            val found = PlexProbe.reach(http(), store.connections, store.machineId) ?: return@withLock null
+            store.moveTo(found.uri)
+            server()
+        }
 
     /** The client for this phone's device. */
     private fun http(): PlexHttp =

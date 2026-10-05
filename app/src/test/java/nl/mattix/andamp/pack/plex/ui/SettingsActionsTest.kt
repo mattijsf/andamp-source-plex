@@ -340,6 +340,25 @@ class SettingsActionsTest {
             assertEquals(1, announced)
         }
 
+    /** A picker canceled part way leaves a sign-in pending; a signed-in listener's choices are still the kept server's. */
+    @Test
+    fun `a sign-in left pending by a canceled picker does not stand in for the kept one`() =
+        runTest {
+            val actions = actions(EVERYTHING_UP + ("/library/sections" to recorded("sections-two-music.json")))
+            assertTrue(actions.finishLink(RECORDED_TOKEN) is Tried.ChooseLibrary)
+            // the listener cancels, and signs in by hand instead
+            store.signIn("", "", "typed", "Office", OFFICE, LOCAL, emptyList(), "1", "Music")
+
+            val listed = actions.libraries()
+            val tried = actions.choose(Pick.LIBRARY, Choice("3", "Audiobooks"))
+
+            assertEquals(listOf(Choice("1", "Music"), Choice("3", "Audiobooks")), listed)
+            assertEquals(Tried.SignedIn, tried)
+            assertEquals("the kept sign-in's library changed, nothing else", "typed", store.serverToken)
+            assertEquals("Office", store.serverName)
+            assertEquals("3", store.sectionKey)
+        }
+
     @Test
     fun `a pick with no sign-in under way and nobody signed in fails`() =
         runTest {

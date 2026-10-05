@@ -38,7 +38,11 @@ class PlexLibrary(
     /** The phone's API level, which decides which rows play as they are; a parameter so a JVM test can choose it. */
     private val sdk: Int = android.os.Build.VERSION.SDK_INT,
 ) {
-    /** The server the questions go to; replaced by [moved]. */
+    /**
+     * The server the questions go to; replaced by [moved]. Volatile, because questions
+     * arrive on several binder threads and one of them may move it.
+     */
+    @Volatile
     var server: PlexServer = server
         private set
 
@@ -130,7 +134,8 @@ class PlexLibrary(
     /**
      * One `GET` for the page [question] asks for, read with [read]. A server
      * that does not answer is asked once more on the connection [moved]
-     * finds, when it finds one.
+     * finds, when it finds one. When another question moved it meanwhile,
+     * that connection is used without asking again.
      */
     private suspend fun asked(
         path: String,
@@ -138,11 +143,12 @@ class PlexLibrary(
         question: PackQuestion,
         answer: (JSONObject) -> PackAnswer,
     ): PackAnswer {
-        val first = http.get(server.url(path, params), server.token, paged(question))
+        val was = server
+        val first = http.get(was.url(path, params), was.token, paged(question))
         if (first !is PlexReply.Unreachable) return read(first, answer)
-        val elsewhere = moved() ?: return FAILED
-        server = elsewhere
-        return read(http.get(server.url(path, params), server.token, paged(question)), answer)
+        if (server === was) server = moved() ?: return FAILED
+        val now = server
+        return read(http.get(now.url(path, params), now.token, paged(question)), answer)
     }
 
     /** A reply as an answer. Anything other than a `MediaContainer` is `failed`; a 401 also calls [signedOut]. */
