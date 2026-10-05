@@ -18,6 +18,8 @@ internal class FakePlexActions(
     var pin: PlexPin? = PlexPin(1234, "ABCD"),
     /** What the server lists when asked for its libraries. */
     var libraries: List<Choice> = emptyList(),
+    /** What is kept once a sign-in went through. */
+    private val after: Kept = Kept("listener", "Living room", "http://192.168.1.10:32400", "Music", signedIn = true),
 ) : PlexActions {
     var state: PinState = PinState.Waiting
     var finished = CompletableDeferred<Tried>()
@@ -43,7 +45,7 @@ internal class FakePlexActions(
 
     override suspend fun finishLink(token: String): Tried {
         finishedWith += token
-        return finished.await()
+        return landed(finished.await())
     }
 
     override suspend fun choose(
@@ -51,7 +53,7 @@ internal class FakePlexActions(
         choice: Choice,
     ): Tried {
         picked += "${what.name.lowercase()}:${choice.id}"
-        return chosen.await()
+        return landed(chosen.await())
     }
 
     override suspend fun libraries(): List<Choice> = libraries
@@ -69,7 +71,13 @@ internal class FakePlexActions(
         token: String,
     ): Tried {
         signedIn += listOf(address, token)
-        return answer.await()
+        return landed(answer.await())
+    }
+
+    /** A sign-in that went through changes what is kept, as the real store does. */
+    private fun landed(tried: Tried): Tried {
+        if (tried == Tried.SignedIn) holds = after
+        return tried
     }
 
     override suspend fun test(): Tried {

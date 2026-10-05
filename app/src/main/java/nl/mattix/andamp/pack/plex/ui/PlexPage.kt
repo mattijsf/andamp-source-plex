@@ -69,7 +69,6 @@ import nl.mattix.andamp.pack.plex.R
 internal fun PlexPage(
     actions: PlexActions,
     appList: AppListEntry,
-    onDone: () -> Unit,
     padding: PaddingValues = PaddingValues(),
 ) {
     var kept by remember { mutableStateOf(actions.kept()) }
@@ -78,28 +77,21 @@ internal fun PlexPage(
     var tried by remember { mutableStateOf<Tried?>(null) }
     val work = rememberCoroutineScope()
 
-    /** Where a finished try leaves the page. A sign-in closes it, except when a signed-in listener changed the library. */
-    fun landed(
-        said: Tried,
-        closing: Boolean,
-    ) {
+    /** Where a finished try leaves the page. A sign-in shows the server card, with what was kept. */
+    fun landed(said: Tried) {
         when (said) {
             Tried.SignedIn -> {
-                if (closing) {
-                    onDone()
-                } else {
-                    kept = actions.kept()
-                    stage = Stage.Form
-                    tried = null
-                }
+                kept = actions.kept()
+                stage = Stage.Form
+                tried = said
             }
 
             is Tried.ChooseServer -> {
-                stage = Stage.Choosing(Pick.SERVER, said.choices, closing)
+                stage = Stage.Choosing(Pick.SERVER, said.choices)
             }
 
             is Tried.ChooseLibrary -> {
-                stage = Stage.Choosing(Pick.LIBRARY, said.choices, closing)
+                stage = Stage.Choosing(Pick.LIBRARY, said.choices)
             }
 
             else -> {
@@ -129,13 +121,13 @@ internal fun PlexPage(
         Spacer(Modifier.height(12.dp))
         when (val shown = stage) {
             is Stage.Linking -> {
-                LaunchedEffect(shown.pin) { landed(actions.awaitApproval(shown.pin), closing = true) }
+                LaunchedEffect(shown.pin) { landed(actions.awaitApproval(shown.pin)) }
                 CodeCard(shown.pin, onCancel = { stage = Stage.Form })
             }
 
             is Stage.Choosing -> {
                 PickOneCard(shown.what, shown.choices, onCancel = { stage = Stage.Form }, onPick = { choice ->
-                    work.launch { landed(actions.choose(shown.what, choice), closing = shown.closing) }
+                    work.launch { landed(actions.choose(shown.what, choice)) }
                 })
             }
 
@@ -148,9 +140,7 @@ internal fun PlexPage(
                             Stage.Linking(
                                 it,
                             )
-                    }, onLanded = {
-                        landed(it, closing = true)
-                    })
+                    }, onLanded = ::landed)
                 }
             }
         }
@@ -170,11 +160,10 @@ internal sealed interface Stage {
         val pin: PlexPin,
     ) : Stage
 
-    /** A list of servers or libraries to pick from. [closing] is whether the pick ends a sign-in that closes the page. */
+    /** A list of servers or libraries to pick from. */
     data class Choosing(
         val what: Pick,
         val choices: List<Choice>,
-        val closing: Boolean,
     ) : Stage
 }
 
@@ -350,8 +339,8 @@ private fun ServerCard(
                             listing = false
                             when (choices.size) {
                                 0 -> onTried(Tried.NoServer("the server did not list its libraries"))
-                                1 -> onTried(Tried.Failed("the server has one music library"))
-                                else -> onChoose(Stage.Choosing(Pick.LIBRARY, choices, closing = false))
+                                1 -> onTried(Tried.OneLibrary(choices.single().title))
+                                else -> onChoose(Stage.Choosing(Pick.LIBRARY, choices))
                             }
                         }
                     },
@@ -382,7 +371,7 @@ private fun Line(
 /** What the last test or sign-in said, in the error colors when it failed. */
 @Composable
 internal fun Outcome(tried: Tried) {
-    val good = tried is Tried.Reached || tried == Tried.StillSignedIn || tried == Tried.SignedIn
+    val good = tried is Tried.Reached || tried == Tried.StillSignedIn || tried == Tried.SignedIn || tried is Tried.OneLibrary
     Surface(
         color = if (good) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.errorContainer,
         shape = RoundedCornerShape(12.dp),
@@ -421,6 +410,7 @@ internal fun words(tried: Tried): String =
         Tried.Refused -> "The server does not accept that token."
         Tried.Expired -> "The code expired. Get a new one."
         Tried.NoMusic -> "That server has no music library."
+        is Tried.OneLibrary -> "This server has one music library: ${tried.title}."
         Tried.NoServers -> "Your Plex account reaches no server."
         is Tried.ChooseServer, is Tried.ChooseLibrary -> "Choose one."
         is Tried.Failed -> "Plex did not sign you in: ${tried.why}"

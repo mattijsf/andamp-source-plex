@@ -136,6 +136,11 @@ internal sealed interface Tried {
     /** The server answered, and has no music library. */
     data object NoMusic : Tried
 
+    /** The server has one music library, called [title], so there is nothing to change to. */
+    data class OneLibrary(
+        val title: String,
+    ) : Tried
+
     /** The account can reach no server. */
     data object NoServers : Tried
 

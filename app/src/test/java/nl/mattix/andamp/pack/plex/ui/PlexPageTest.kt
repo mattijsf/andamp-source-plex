@@ -34,10 +34,8 @@ class PlexPageTest {
     @get:Rule
     val compose = createComposeRule()
 
-    private fun page(actions: PlexActions): () -> Int {
-        var done = 0
-        compose.setContent { PlexPage(actions, FakeAppList(), onDone = { done++ }) }
-        return { done }
+    private fun page(actions: PlexActions) {
+        compose.setContent { PlexPage(actions, FakeAppList()) }
     }
 
     /** The text in a field, without its label. */
@@ -97,7 +95,7 @@ class PlexPageTest {
     @Test
     fun `Test sends what was typed, spins while it is out, and says the server took it without closing`() {
         val actions = FakePlexActions()
-        val done = page(actions)
+        page(actions)
         manual()
 
         compose.onNodeWithTag("plex.test").performClick()
@@ -112,13 +110,12 @@ class PlexPageTest {
         compose.onNodeWithText("Connected to Living room. Sign in to use this server in Andamp.").assertIsDisplayed()
         compose.onNodeWithTag("plex.signin").assertIsEnabled()
         assertEquals("a test signs nobody in", emptyList<List<String>>(), actions.signedIn)
-        assertEquals(0, done())
     }
 
     @Test
-    fun `a typed sign-in sends exactly what was typed, spins while it is out, and closes the page when it works`() {
+    fun `a typed sign-in sends exactly what was typed, spins while it is out, and shows the server when it works`() {
         val actions = FakePlexActions()
-        val done = page(actions)
+        page(actions)
         manual()
 
         compose.onNodeWithTag("plex.signin").performClick()
@@ -130,7 +127,9 @@ class PlexPageTest {
         actions.answer.complete(Tried.SignedIn)
         compose.waitForIdle()
 
-        assertEquals(1, done())
+        compose.onNodeWithText("Signed in.").assertIsDisplayed()
+        compose.onNodeWithText("Living room").assertIsDisplayed()
+        compose.onNodeWithTag("plex.test").assertIsDisplayed()
     }
 
     @Test
@@ -194,22 +193,23 @@ class PlexPageTest {
     }
 
     @Test
-    fun `a code is asked about on a timer until it is entered, then the sign-in goes on and the page closes`() {
+    fun `a code is asked about on a timer until it is entered, then the sign-in goes on to the server`() {
         val actions = FakePlexActions()
         actions.finished.complete(Tried.SignedIn)
-        val done = linked(actions)
+        linked(actions)
 
         compose.mainClock.advanceTimeBy(POLL_MS * 2 + 100)
         compose.waitForIdle()
         assertEquals(listOf(1234L, 1234L), actions.polled)
-        assertEquals(0, done())
 
         actions.state = PinState.Approved("the-token")
         compose.mainClock.advanceTimeBy(POLL_MS + 100)
         compose.waitForIdle()
 
         assertEquals(listOf("the-token"), actions.finishedWith)
-        assertEquals(1, done())
+        compose.onNodeWithText("Signed in.").assertIsDisplayed()
+        compose.onNodeWithText("Living room").assertIsDisplayed()
+        compose.onNodeWithTag("plex.test").assertIsDisplayed()
     }
 
     @Test
@@ -256,10 +256,10 @@ class PlexPageTest {
     }
 
     @Test
-    fun `several libraries are offered to pick from, and the pick is kept and closes the page`() {
+    fun `several libraries are offered to pick from, and the pick is kept and shown`() {
         val actions = FakePlexActions()
         actions.finished.complete(Tried.ChooseLibrary(listOf(Choice("1", "Music"), Choice("3", "Audiobooks"))))
-        val done = linked(actions)
+        linked(actions)
         actions.state = PinState.Approved("the-token")
         compose.mainClock.advanceTimeBy(POLL_MS + 100)
         compose.waitForIdle()
@@ -272,14 +272,16 @@ class PlexPageTest {
         compose.waitForIdle()
 
         assertEquals(listOf("library:3"), actions.picked)
-        assertEquals(1, done())
+        compose.onNodeWithText("Signed in.").assertIsDisplayed()
+        compose.onNodeWithText("Living room").assertIsDisplayed()
+        compose.onNodeWithTag("plex.test").assertIsDisplayed()
     }
 
     @Test
     fun `several servers are offered to pick from, and canceling keeps nothing`() {
         val actions = FakePlexActions()
         actions.answer.complete(Tried.ChooseServer(listOf(Choice("a", "Living room"), Choice("b", "Office"))))
-        val done = page(actions)
+        page(actions)
         manual()
         compose.onNodeWithTag("plex.signin").performClick()
         compose.waitForIdle()
@@ -291,7 +293,6 @@ class PlexPageTest {
         compose.onNodeWithTag("plex.choice.a").assertDoesNotExist()
         compose.onNodeWithTag("plex.link").assertIsDisplayed()
         assertEquals(emptyList<String>(), actions.picked)
-        assertEquals(0, done())
     }
 
     @Test
@@ -330,7 +331,7 @@ class PlexPageTest {
     fun `the library can be changed while signed in, without closing the page`() {
         val actions = FakePlexActions(KEPT, libraries = listOf(Choice("1", "Music"), Choice("3", "Audiobooks")))
         actions.chosen.complete(Tried.SignedIn)
-        val done = page(actions)
+        page(actions)
 
         compose.onNodeWithTag("plex.library").performClick()
         compose.waitForIdle()
@@ -339,7 +340,6 @@ class PlexPageTest {
         compose.waitForIdle()
 
         assertEquals(listOf("library:3"), actions.picked)
-        assertEquals(0, done())
         compose.onNodeWithTag("plex.test").assertIsDisplayed()
     }
 
@@ -351,26 +351,25 @@ class PlexPageTest {
         compose.onNodeWithTag("plex.library").performClick()
         compose.waitForIdle()
 
-        compose.onNodeWithTag("plex.said").assertTextEquals("Plex did not sign you in: the server has one music library")
+        compose.onNodeWithTag("plex.said").assertTextEquals("This server has one music library: Music.")
     }
 
     @Test
     fun `signing out forgets the sign-in and offers the ways in again`() {
         val actions = FakePlexActions(KEPT)
-        val done = page(actions)
+        page(actions)
 
         compose.onNodeWithTag("plex.signout").performClick()
         compose.waitForIdle()
 
         assertEquals(1, actions.signedOut)
-        assertEquals(0, done())
         compose.onNodeWithTag("plex.link").assertIsDisplayed()
     }
 
     @Test
     fun `the page carries the app list switch`() {
         val list = FakeAppList(shown = true)
-        compose.setContent { PlexPage(FakePlexActions(), list, onDone = {}) }
+        compose.setContent { PlexPage(FakePlexActions(), list) }
 
         compose
             .onNodeWithTag("pack.applist")
@@ -383,12 +382,11 @@ class PlexPageTest {
     }
 
     /** A page with a code on screen. */
-    private fun linked(actions: FakePlexActions): () -> Int {
-        val done = page(actions)
+    private fun linked(actions: FakePlexActions) {
+        page(actions)
         compose.onNodeWithTag("plex.link").performClick()
         compose.waitForIdle()
         compose.onNodeWithTag("plex.code").assertExists()
-        return done
     }
 
     private companion object {

@@ -40,7 +40,7 @@ class SettingsScreenGoldenTest {
     ) {
         compose.setContent {
             MaterialTheme(colorScheme = if (dark) darkColorScheme() else lightColorScheme()) {
-                Surface(Modifier.fillMaxSize()) { PlexPage(actions, FakeAppList(shown), onDone = {}) }
+                Surface(Modifier.fillMaxSize()) { PlexPage(actions, FakeAppList(shown)) }
             }
         }
         compose.waitForIdle()

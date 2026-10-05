@@ -80,7 +80,6 @@ class PlexSettingsActivity : ComponentActivity() {
                         PlexPage(
                             SettingsActions(applicationContext, store, PackService::announce),
                             appList = appList,
-                            onDone = ::finish,
                             padding = padding,
                         )
                     }
