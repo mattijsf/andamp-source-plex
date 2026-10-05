@@ -1,0 +1,38 @@
+{
+  "MediaContainer": {
+    "size": 2,
+    "totalSize": 2,
+    "offset": 0,
+    "Metadata": [
+      {
+        "ratingKey": "41",
+        "key": "/playlists/41/items",
+        "guid": "com.plexapp.agents.none://41",
+        "type": "playlist",
+        "title": "Driving",
+        "summary": "",
+        "smart": false,
+        "playlistType": "audio",
+        "composite": "/playlists/41/composite/1700000000",
+        "duration": 831138,
+        "leafCount": 3,
+        "addedAt": 1700000000,
+        "updatedAt": 1700000000
+      },
+      {
+        "ratingKey": "42",
+        "key": "/playlists/42/items",
+        "guid": "com.plexapp.agents.none://42",
+        "type": "playlist",
+        "title": "Empty",
+        "summary": "",
+        "smart": true,
+        "playlistType": "audio",
+        "duration": 0,
+        "leafCount": 0,
+        "addedAt": 1700000000,
+        "updatedAt": 1700000000
+      }
+    ]
+  }
+}

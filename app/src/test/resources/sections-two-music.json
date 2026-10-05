@@ -1,0 +1,87 @@
+{
+  "MediaContainer": {
+    "size": 3,
+    "allowSync": false,
+    "title1": "Plex Library",
+    "Directory": [
+      {
+        "allowSync": true,
+        "filters": true,
+        "refreshing": false,
+        "key": "1",
+        "type": "artist",
+        "title": "Music",
+        "agent": "tv.plex.agents.music",
+        "scanner": "Plex Music",
+        "language": "en-US",
+        "metadataAgentProviderGroupId": 3,
+        "uuid": "4941fb50-d431-4aa3-9d87-3be5f3fb744e",
+        "updatedAt": 1791279562,
+        "createdAt": 1791279562,
+        "scannedAt": 1791279564,
+        "content": true,
+        "directory": true,
+        "contentChangedAt": 25,
+        "hidden": 0,
+        "Location": [
+          {
+            "id": 1,
+            "path": "/music/elsewhere"
+          }
+        ]
+      },
+      {
+        "allowSync": true,
+        "filters": true,
+        "refreshing": false,
+        "key": "2",
+        "type": "movie",
+        "title": "Movies",
+        "agent": "tv.plex.agents.movie",
+        "scanner": "Plex Movie",
+        "language": "en-US",
+        "metadataAgentProviderGroupId": 3,
+        "uuid": "00000000-0000-0000-0000-000000000002",
+        "updatedAt": 1791279562,
+        "createdAt": 1791279562,
+        "scannedAt": 1791279564,
+        "content": true,
+        "directory": true,
+        "contentChangedAt": 25,
+        "hidden": 0,
+        "Location": [
+          {
+            "id": 1,
+            "path": "/music/elsewhere"
+          }
+        ]
+      },
+      {
+        "allowSync": true,
+        "filters": true,
+        "refreshing": false,
+        "key": "3",
+        "type": "artist",
+        "title": "Audiobooks",
+        "agent": "tv.plex.agents.music",
+        "scanner": "Plex Music",
+        "language": "en-US",
+        "metadataAgentProviderGroupId": 3,
+        "uuid": "00000000-0000-0000-0000-000000000003",
+        "updatedAt": 1791279562,
+        "createdAt": 1791279562,
+        "scannedAt": 1791279564,
+        "content": true,
+        "directory": true,
+        "contentChangedAt": 25,
+        "hidden": 0,
+        "Location": [
+          {
+            "id": 1,
+            "path": "/music/elsewhere"
+          }
+        ]
+      }
+    ]
+  }
+}

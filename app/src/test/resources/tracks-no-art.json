@@ -1,0 +1,209 @@
+{
+  "MediaContainer": {
+    "size": 3,
+    "totalSize": 10,
+    "offset": 0,
+    "allowSync": true,
+    "art": "/library/metadata/1/art/1791279565",
+    "grandparentRatingKey": 1,
+    "grandparentThumb": "/library/metadata/1/thumb/1791279565",
+    "grandparentTitle": "Muse",
+    "identifier": "com.plexapp.plugins.library",
+    "key": "2",
+    "librarySectionID": 1,
+    "librarySectionTitle": "Music",
+    "librarySectionUUID": "4941fb50-d431-4aa3-9d87-3be5f3fb744e",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1786914838,
+    "nocache": true,
+    "parentIndex": 1,
+    "parentTitle": "The Wow! Signal",
+    "parentYear": 2026,
+    "summary": "If 2022's Will of the People was designed to be an imagined greatest-hits where the band cannily referenced high points from their catalog in the form of fresh tracks, The Wow! Signal does it one better by producing better songs that feel less like a paint-by-numbers parody of Muse and more like a band extracting the best elements of their DNA and creating something entirely new. The result is their most cohesive listening experience since the Black Holes/Resistance era. Conjuring those bits and pieces from throughout their extensive catalog -- whether it's a riff reminiscent of Origin of Symmetry, a 2nd Law synth stab, or a shredding solo from Absolution -- Muse feels high stakes again, as if this music might actually help humanity in the impending alien invasion. For longtime fans, the origin of the album's strange title shouldn't be a surprise, as frontman Matt Bellamy's obsession with intergalactic conspiracy theories and our eventual doom have been the band's bread and butter for decades, but for those unfamiliar with the odd name should know that it comes from a 1977 event when an extraterrestrial signal was received by The Ohio State University's Big Ear radio telescope and the reviewing astronomer commented on the anomaly with that titular expression. Here, it stands for the human need to find connection somewhere out there. Written after Bellamy and his wife separated, Wow! is a break-up record at its core, employing familiar Muse themes to highlight the pain, loneliness, and turmoil involved. One listen to \"Shimmering Scars\" and \"Space Debris\" will have the most hardened heart weeping for Bellamy.\r\nElsewhere, the \"Dark Forest\" hypothesis is referenced on the unnerving opener of the same name, which echoes the cinematic grandeur of tracks like \"Take a Bow\" and \"Supremacy.\" That outer space setting makes it easy to file Wow! alongside Absolution, Black Holes, and Resistance, and the music also follows suit in terms of quality and scope. Purists still crying for a return to Origin and Absolution can rest easy knowing that there are plenty of crunchy riffs and chaotic breaks to be had, like on the heartbroken headbanger \"Cryogen,\" the crushing \"The Sickness in You & I,\" or on the monstrous bridge of the metallic \"Unravelling.\" On the epic centerpiece \"Hexagons,\" the trio play with 6/4 time, traditional song structure, and perceptions of reality (we're dealing with six dimensions here) on a prog-rock journey that should knock the wind out of fans from every era. For those into dance-Muse, the neon-washed disco-funk standout \"Nightshift Superstar\" is as jarring a turn as the leap from Absolution's grand orchestrations to the \"Supermassive Black Hole\" single drop back in 2006 -- and just as physically satisfying. Like Justice and Daft Punk colliding with Muse, it's got an outrageously catchy bassline groove from Chris Wolstenholme, Bellamy's heavenly falsetto, and an infectious urgency provided by drummer Dominic Howard. Elsewhere, the album's beautiful \"Madness\"/\"Guiding Light\" ballad is found on the uplifting organ-backed \"Be with You\" -- which revives their 2nd Law dubstep fancies on a surprisingly effective boost of earnest yearning -- and they even recruited Ellie Goulding on the loud duet \"Hush,\" adding a refreshing vocal counterpart who can match Bellamy's highs with ease. Beyond the theatrics and indulgences, Muse has always been about heart and hope in scary times, whether it's a pending apocalypse, alien invasion, A.I. takeover, or all-too-real global war crisis. On The Wow! Signal, they've harnessed that emotion and paired it with their most solid songs in ages, reaching for something more in that great beyond. It's a seamlessly executed and proudly over-the-top experience, getting Muse back on track with a catalog highlight that's a lot more vital (and fun) than their preceding few offerings. ~ Neil Z. Yeung",
+    "thumb": "/library/metadata/2/thumb/1791279566",
+    "title1": "Muse",
+    "title2": "The Wow! Signal",
+    "viewGroup": "track",
+    "viewMode": 65593,
+    "Metadata": [
+      {
+        "ratingKey": "3",
+        "key": "/library/metadata/3",
+        "parentRatingKey": "2",
+        "grandparentRatingKey": "1",
+        "guid": "plex://track/69bc59838f516e88cec18647",
+        "parentGuid": "plex://album/69bc59828f516e88cec1855f",
+        "grandparentGuid": "mbid://9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+        "parentStudio": "Warner Records",
+        "type": "track",
+        "title": "The Dark Forest",
+        "titleSort": "Dark Forest",
+        "grandparentKey": "/library/metadata/1",
+        "parentKey": "/library/metadata/2",
+        "grandparentTitle": "Muse",
+        "parentTitle": "The Wow! Signal",
+        "summary": "",
+        "index": 1,
+        "parentIndex": 1,
+        "ratingCount": 57574,
+        "parentYear": 2026,
+        "art": "/library/metadata/1/art/1791279565",
+        "grandparentArt": "/library/metadata/1/art/1791279565",
+        "duration": 315794,
+        "addedAt": 1788252574,
+        "updatedAt": 1791279566,
+        "Media": [
+          {
+            "id": 1,
+            "duration": 315794,
+            "bitrate": 279,
+            "audioChannels": 2,
+            "audioCodec": "mp3",
+            "container": "mp3",
+            "Part": [
+              {
+                "id": 1,
+                "key": "/library/parts/1/1788252574/file.mp3",
+                "duration": 315794,
+                "file": "/music/Muse/The Wow! Signal/01 - The Dark Forest.mp3",
+                "size": 11273383,
+                "container": "mp3",
+                "hasThumbnail": "1"
+              }
+            ]
+          }
+        ],
+        "Image": [
+          {
+            "alt": "The Dark Forest",
+            "type": "coverPoster",
+            "url": "/library/metadata/1/thumb/1791279565"
+          },
+          {
+            "alt": "The Dark Forest",
+            "type": "background",
+            "url": "/library/metadata/1/art/1791279565"
+          }
+        ]
+      },
+      {
+        "ratingKey": "4",
+        "key": "/library/metadata/4",
+        "parentRatingKey": "2",
+        "grandparentRatingKey": "1",
+        "guid": "plex://track/69bc59838f516e88cec186fe",
+        "parentGuid": "plex://album/69bc59828f516e88cec1855f",
+        "grandparentGuid": "mbid://9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+        "parentStudio": "Warner Records",
+        "type": "track",
+        "title": "Nightshift Superstar",
+        "grandparentKey": "/library/metadata/1",
+        "parentKey": "/library/metadata/2",
+        "grandparentTitle": "Muse",
+        "parentTitle": "The Wow! Signal",
+        "summary": "",
+        "index": 2,
+        "parentIndex": 1,
+        "ratingCount": 77413,
+        "parentYear": 2026,
+        "art": "/library/metadata/1/art/1791279565",
+        "grandparentArt": "/library/metadata/1/art/1791279565",
+        "duration": 247197,
+        "addedAt": 1788252577,
+        "updatedAt": 1791279566,
+        "Media": [
+          {
+            "id": 2,
+            "duration": 247197,
+            "bitrate": 264,
+            "audioChannels": 2,
+            "audioCodec": "mp3",
+            "container": "mp3",
+            "Part": [
+              {
+                "id": 2,
+                "key": "/library/parts/2/1788252577/file.mp3",
+                "duration": 247197,
+                "file": "/music/Muse/The Wow! Signal/02 - Nightshift Superstar.mp3",
+                "size": 8401884,
+                "container": "mp3",
+                "hasThumbnail": "1"
+              }
+            ]
+          }
+        ],
+        "Image": [
+          {
+            "alt": "Nightshift Superstar",
+            "type": "coverPoster",
+            "url": "/library/metadata/1/thumb/1791279565"
+          },
+          {
+            "alt": "Nightshift Superstar",
+            "type": "background",
+            "url": "/library/metadata/1/art/1791279565"
+          }
+        ]
+      },
+      {
+        "ratingKey": "5",
+        "key": "/library/metadata/5",
+        "parentRatingKey": "2",
+        "grandparentRatingKey": "1",
+        "guid": "plex://track/69bc59838f516e88cec186bf",
+        "parentGuid": "plex://album/69bc59828f516e88cec1855f",
+        "grandparentGuid": "mbid://9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+        "parentStudio": "Warner Records",
+        "type": "track",
+        "title": "Shimmering Scars",
+        "grandparentKey": "/library/metadata/1",
+        "parentKey": "/library/metadata/2",
+        "grandparentTitle": "Muse",
+        "parentTitle": "The Wow! Signal",
+        "summary": "",
+        "index": 3,
+        "parentIndex": 1,
+        "ratingCount": 51733,
+        "parentYear": 2026,
+        "art": "/library/metadata/1/art/1791279565",
+        "grandparentArt": "/library/metadata/1/art/1791279565",
+        "duration": 268147,
+        "addedAt": 1788252579,
+        "updatedAt": 1791279566,
+        "Media": [
+          {
+            "id": 3,
+            "duration": 268147,
+            "bitrate": 254,
+            "audioChannels": 2,
+            "audioCodec": "mp3",
+            "container": "mp3",
+            "Part": [
+              {
+                "id": 3,
+                "key": "/library/parts/3/1788252579/file.mp3",
+                "duration": 268147,
+                "file": "/music/Muse/The Wow! Signal/03 - Shimmering Scars.mp3",
+                "size": 8757502,
+                "container": "mp3",
+                "hasThumbnail": "1"
+              }
+            ]
+          }
+        ],
+        "Image": [
+          {
+            "alt": "Shimmering Scars",
+            "type": "coverPoster",
+            "url": "/library/metadata/1/thumb/1791279565"
+          },
+          {
+            "alt": "Shimmering Scars",
+            "type": "background",
+            "url": "/library/metadata/1/art/1791279565"
+          }
+        ]
+      }
+    ]
+  }
+}

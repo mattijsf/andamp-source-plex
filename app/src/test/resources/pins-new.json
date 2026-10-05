@@ -1,0 +1,26 @@
+{
+  "id": 1379265636,
+  "code": "SBX8",
+  "product": "Andamp",
+  "trusted": false,
+  "qr": "https://plex.tv/api/v2/pins/qr/SBX8",
+  "clientIdentifier": "7d3f2a9e-andamp-test",
+  "location": {
+    "code": "NL",
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "subdivisions": "North Holland",
+    "coordinates": "52.37, 4.89",
+    "european_union_member": true,
+    "continent_code": "EU",
+    "time_zone": "Europe/Amsterdam",
+    "postal_code": "1012",
+    "in_privacy_restricted_country": false,
+    "in_privacy_restricted_region": false
+  },
+  "expiresIn": 900,
+  "createdAt": "2026-10-06T10:11:00Z",
+  "expiresAt": "2026-10-06T10:26:00Z",
+  "authToken": null,
+  "newRegistration": null
+}
