@@ -146,6 +146,8 @@ internal fun PlexPage(
         }
         Spacer(Modifier.height(12.dp))
         AppListRow(appList)
+        Spacer(Modifier.height(12.dp))
+        DonateRow()
         Spacer(Modifier.height(32.dp))
     }
 }
