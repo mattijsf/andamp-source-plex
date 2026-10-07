@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "nl.mattix.andamp.pack.plex"
         targetSdk = 36
-        versionName = "0.1.0" // x-release-please-version
+        versionName = "0.2.0" // x-release-please-version
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
