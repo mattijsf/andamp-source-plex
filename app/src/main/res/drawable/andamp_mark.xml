@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The mark Andamp draws beside this source's songs in its regular font:
+  the service's chevron, in one color. Named in the manifest as
+  nl.mattix.andamp.source.MARK.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+    <group
+        android:translateX="-42.5"
+        android:translateY="-40">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M45.00,40.00 L52.00,40.00 L60.00,50.00 L52.00,60.00 L45.00,60.00 L53.00,50.00 Z" />
+    </group>
+</vector>
