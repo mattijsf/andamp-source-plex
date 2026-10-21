@@ -52,7 +52,7 @@ object Plex {
     /** The server's root, with its `friendlyName`. */
     const val ROOT = ""
 
-    /** The server's libraries; a music library has `type` `artist`. */
+    /** The server's libraries; a music library has `type` `artist`, and its `Location`s are the folders it reads. */
     const val SECTIONS = "library/sections"
 
     /** Everything of one `type` in a library, sorted by the query. */
@@ -60,6 +60,9 @@ object Plex {
 
     /** Everything of one `type` in a library whose title holds the `query`. */
     fun sectionSearch(key: String): String = "library/sections/$key/search"
+
+    /** The genres of one `type` in a library, each a `Directory` with a `key` and a `title`. */
+    fun sectionGenres(key: String): String = "library/sections/$key/genre"
 
     /** An artist's albums or an album's tracks. */
     fun children(id: String): String = "library/metadata/$id/children"

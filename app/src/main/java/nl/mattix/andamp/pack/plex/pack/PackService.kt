@@ -30,7 +30,8 @@ import nl.mattix.andamp.pack.plex.PlexServer
  * this phone, the music library of that server, and the backend that plays
  * its rows; the binder and the service lifetime are [PackServiceBase].
  *
- * Questions go to [PlexLibrary] directly; the server does the paging.
+ * Questions go to [PlexLibrary] directly. The server does the paging, except
+ * for the folders and the genres, which the library cuts into pages.
  *
  * A token can be revoked on plex.tv, which shows as a 401 on the next
  * question. The service then forgets the sign-in and tells every bound
@@ -133,7 +134,8 @@ class PackService : PackServiceBase() {
 
     /**
      * The library, kept while the address, the token and the library stay the
-     * same and built again when any changes. It holds no cache.
+     * same and built again when any changes. Building it again drops the
+     * folders it found; see [PlexLibrary].
      */
     @Synchronized
     private fun library(): PlexLibrary? {

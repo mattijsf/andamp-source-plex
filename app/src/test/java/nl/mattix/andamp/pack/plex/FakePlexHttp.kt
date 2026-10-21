@@ -16,10 +16,11 @@ import org.json.JSONObject
  * `PLEX-TOKEN-PLACEHOLDER` (the account's) and `SERVER-TOKEN-PLACEHOLDER`
  * (the server's), file paths by ones under `/music`, and the server's name
  * by "Living room". `playlists.json`, `playlist-items.json`,
- * `tracks-mixed.json`, `resources*.json` and `user.json` are written in the
- * same shape, because the recording server had no playlists, no FLAC or ALAC
- * and one connection. `unauthorized.html` is the body the server sent with a
- * 401, and `identity.xml` is what it answers without `Accept`.
+ * `tracks-mixed.json`, `genres.json`, `all-tracks-*.json`, `resources*.json`
+ * and `user.json` are written in the same shape, because the recording server
+ * had no playlists, no FLAC or ALAC, one genre, one folder and one
+ * connection. `unauthorized.html` is the body the server sent with a 401, and
+ * `identity.xml` is what it answers without `Accept`.
  */
 internal class FakePlexHttp(
     private val answer: suspend (Ask) -> PlexReply,

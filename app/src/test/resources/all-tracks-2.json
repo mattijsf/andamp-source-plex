@@ -1,0 +1,144 @@
+{
+  "MediaContainer": {
+    "size": 3,
+    "totalSize": 5,
+    "offset": 2,
+    "allowSync": true,
+    "art": "/:/resources/artist-fanart.jpg",
+    "identifier": "com.plexapp.plugins.library",
+    "librarySectionID": 1,
+    "librarySectionTitle": "Music",
+    "librarySectionUUID": "4941fb50-d431-4aa3-9d87-3be5f3fb744e",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1786914838,
+    "nocache": true,
+    "thumb": "/:/resources/artist.png",
+    "title1": "Music",
+    "title2": "All Artists",
+    "viewGroup": "artist",
+    "viewMode": 65592,
+    "Metadata": [
+      {
+        "ratingKey": "5",
+        "key": "/library/metadata/5",
+        "parentRatingKey": "2",
+        "grandparentRatingKey": "1",
+        "guid": "plex://track/69bc59838f516e88cec186bf",
+        "parentGuid": "plex://album/69bc59828f516e88cec1855f",
+        "grandparentGuid": "mbid://9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+        "parentStudio": "Warner Records",
+        "type": "track",
+        "title": "Shimmering Scars",
+        "grandparentKey": "/library/metadata/1",
+        "parentKey": "/library/metadata/2",
+        "grandparentTitle": "Muse",
+        "parentTitle": "The Wow! Signal",
+        "summary": "",
+        "index": 3,
+        "parentIndex": 1,
+        "ratingCount": 51733,
+        "parentYear": 2026,
+        "thumb": "/library/metadata/2/thumb/1791279566",
+        "art": "/library/metadata/1/art/1791279565",
+        "parentThumb": "/library/metadata/2/thumb/1791279566",
+        "grandparentThumb": "/library/metadata/1/thumb/1791279565",
+        "grandparentArt": "/library/metadata/1/art/1791279565",
+        "duration": 268147,
+        "addedAt": 1788252579,
+        "updatedAt": 1791279566,
+        "Media": [
+          {
+            "id": 3,
+            "duration": 268147,
+            "bitrate": 254,
+            "audioChannels": 2,
+            "audioCodec": "mp3",
+            "container": "mp3",
+            "Part": [
+              {
+                "id": 3,
+                "key": "/library/parts/3/1788252579/file.mp3",
+                "duration": 268147,
+                "file": "/music/Muse/The Wow! Signal/03 - Shimmering Scars.mp3",
+                "size": 8757502,
+                "container": "mp3",
+                "hasThumbnail": "1"
+              }
+            ]
+          }
+        ],
+        "Image": [
+          {
+            "alt": "Shimmering Scars",
+            "type": "coverPoster",
+            "url": "/library/metadata/1/thumb/1791279565"
+          },
+          {
+            "alt": "Shimmering Scars",
+            "type": "background",
+            "url": "/library/metadata/1/art/1791279565"
+          }
+        ]
+      },
+      {
+        "ratingKey": "20",
+        "key": "/library/metadata/20",
+        "parentRatingKey": "19",
+        "grandparentRatingKey": "1",
+        "type": "track",
+        "title": "Demo",
+        "grandparentKey": "/library/metadata/1",
+        "parentKey": "/library/metadata/19",
+        "grandparentTitle": "Muse",
+        "parentTitle": "Singles",
+        "summary": "",
+        "index": 1,
+        "parentIndex": 1,
+        "thumb": "/library/metadata/19/thumb/1791279566",
+        "parentThumb": "/library/metadata/19/thumb/1791279566",
+        "grandparentThumb": "/library/metadata/1/thumb/1791279565",
+        "duration": 192000,
+        "addedAt": 1788252600,
+        "updatedAt": 1791279566,
+        "Media": [
+          {
+            "id": 20,
+            "duration": 192000,
+            "bitrate": 256,
+            "audioChannels": 2,
+            "audioCodec": "mp3",
+            "container": "mp3",
+            "Part": [
+              {
+                "id": 20,
+                "key": "/library/parts/20/1788252600/file.mp3",
+                "duration": 192000,
+                "file": "/music/Muse/Singles/Demo.mp3",
+                "size": 6144000,
+                "container": "mp3"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ratingKey": "21",
+        "key": "/library/metadata/21",
+        "parentRatingKey": "19",
+        "grandparentRatingKey": "1",
+        "type": "track",
+        "title": "Outtake",
+        "grandparentKey": "/library/metadata/1",
+        "parentKey": "/library/metadata/19",
+        "grandparentTitle": "Muse",
+        "parentTitle": "Singles",
+        "summary": "",
+        "index": 2,
+        "parentIndex": 1,
+        "duration": 60000,
+        "addedAt": 1788252600,
+        "updatedAt": 1791279566
+      }
+    ]
+  }
+}
