@@ -102,7 +102,7 @@ object PlexRow {
         sdk: Int,
     ): String? {
         val media = media(item) ?: return null
-        val part = media.objects("Part").firstOrNull()
+        val part = part(media)
         val key = part?.text("key").orEmpty()
         val direct = PlexStream.playsDirectly(media.text("container"), media.text("audioCodec"), sdk)
         if (direct && PlexStream.isPartKey(key)) return key
@@ -110,8 +110,18 @@ object PlexRow {
         return file.ifEmpty { key.substringAfterLast('/') }.takeIf { it.isNotEmpty() }
     }
 
+    /**
+     * The path of the track's file on the server, as the server wrote it, such
+     * as `/music/Artist/Album/01 - Song.flac`. Empty when the item lists no
+     * media or its part has no file.
+     */
+    fun file(item: JSONObject): String = media(item)?.let(::part)?.text("file").orEmpty()
+
     /** The first media of an item, which has the codec, the container and the parts. */
     private fun media(item: JSONObject): JSONObject? = item.objects("Media").firstOrNull()
+
+    /** The first part of a media, which has the key the audio is fetched by and the file. */
+    private fun part(media: JSONObject): JSONObject? = media.objects("Part").firstOrNull()
 
     private const val TRACK = "$SCHEME:track:"
     private const val TRACK_TYPE = "track"

@@ -4,6 +4,7 @@ package nl.mattix.andamp.pack.plex.pack
 
 import android.Manifest
 import android.app.Application
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
@@ -104,6 +105,17 @@ class PackServiceTest {
         assertEquals(StreamPlayback.RENDERING.canEditQueue, said.canEditQueue)
         assertEquals(StreamPlayback.RENDERING.canAttenuate, said.canAttenuate)
         assertEquals(PlexLibrary.SHELVES, said.browse)
+    }
+
+    @Test
+    fun `the manifest says the source answers the folders and the genres`() {
+        val said =
+            app.packageManager
+                .getServiceInfo(ComponentName(app, PackService::class.java), PackageManager.GET_META_DATA)
+                .metaData
+
+        assertTrue(said.getBoolean(PackApi.META_FOLDERS))
+        assertTrue(said.getBoolean(PackApi.META_GENRES))
     }
 
     @Test

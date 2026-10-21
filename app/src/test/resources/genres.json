@@ -1,0 +1,37 @@
+{
+  "MediaContainer": {
+    "size": 3,
+    "allowSync": false,
+    "art": "/:/resources/artist-fanart.jpg",
+    "content": "secondary",
+    "identifier": "com.plexapp.plugins.library",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1786914838,
+    "nocache": true,
+    "thumb": "/:/resources/artist.png",
+    "title1": "Music",
+    "title2": "By Genre",
+    "viewGroup": "secondary",
+    "viewMode": 65592,
+    "Directory": [
+      {
+        "fastKey": "/library/sections/1/all?genre=7",
+        "key": "7",
+        "title": "Rock",
+        "type": "genre"
+      },
+      {
+        "fastKey": "/library/sections/1/all?genre=6",
+        "key": "6",
+        "title": "Pop/Rock",
+        "type": "genre"
+      },
+      {
+        "fastKey": "/library/sections/1/all?genre=9",
+        "key": "9",
+        "title": "electronic",
+        "type": "genre"
+      }
+    ]
+  }
+}
