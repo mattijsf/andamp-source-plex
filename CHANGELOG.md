@@ -2,6 +2,14 @@
 
 Changes for people who use this source, newest first.
 
+## [0.4.0](https://github.com/mattijsf/andamp-source-plex/compare/v0.3.0...v0.4.0) (2026-10-21)
+
+
+### New
+
+* Andamp shows this source's logo beside its songs ([#5](https://github.com/mattijsf/andamp-source-plex/issues/5)) ([680e712](https://github.com/mattijsf/andamp-source-plex/commit/680e712068ef26fe865cc2ca72d701a9b40d0347))
+* browse this server's music by folder or genre in Andamp ([#7](https://github.com/mattijsf/andamp-source-plex/issues/7)) ([ad233af](https://github.com/mattijsf/andamp-source-plex/commit/ad233afd17d0306b3d75a911002ab38262995024))
+
 ## [0.3.0](https://github.com/mattijsf/andamp-source-plex/compare/v0.2.0...v0.3.0) (2026-10-14)
 
 
